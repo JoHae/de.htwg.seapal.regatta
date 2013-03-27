@@ -8,27 +8,38 @@ import models.IRegatta;
 
 public class RegattaController extends Observable implements IRegattaController{
 	
-	private IRegatta boat;
+	private IRegatta regatta;
 
 	@Inject
-	public RegattaController(IRegatta boat) {
-		this.boat = boat;
+	public RegattaController(IRegatta regatta) {
+		this.regatta = regatta;
 	}
 
 	@Override
-	public void setBoatName(String string) {
-		boat.setName(string);
+	public void setRegattaName(String string) {
+		regatta.setName(string);
 		notifyObservers();
+	}
+
+	@Override
+	public String getRegattaName() {
+		return regatta.getName();
+	}
+	
+	@Override
+	public void setRegattaHost(String string) {
+		regatta.setName(string);
+		notifyObservers();		
+	}
+
+	@Override
+	public String getRegattaHost() {
+		// TODO Auto-generated method stub
+		return regatta.getHost();
 	}
 	
 	@Override
 	public String getString() {
-		return "Boat: " + boat.getName();
+		return "RegattaName: " + regatta.getName() + "\nRegattaHost: " + regatta.getHost();
 	}
-
-	@Override
-	public String getBoatName() {
-		return boat.getName();
-	}
-
 }

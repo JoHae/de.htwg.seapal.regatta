@@ -17,7 +17,7 @@ public class RegattaDemo {
 	public static void main(String[] args) {
 		
 		// Set up Google Guice Dependency Injector
-		Injector injector = Guice.createInjector(new RegattaDemoMockModule());
+		Injector injector = Guice.createInjector(new RegattaDemoImplModule());
 		
 		// Build up the application, resolving dependencies automatically by Guice
 		IRegattaController controller = injector.getInstance(IRegattaController.class);
@@ -31,6 +31,7 @@ public class RegattaDemo {
 		while (continu) {
 			continu = tui.processInputLine(scanner.next());
 		}
+		scanner.close();
 
 	}
 

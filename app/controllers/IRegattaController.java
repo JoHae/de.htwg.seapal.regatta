@@ -4,9 +4,11 @@ import util.observer.IObservable;
 
 public interface IRegattaController extends IObservable{
 
-	void setBoatName(String string);
+	void setRegattaName(String string);
+	String getRegattaName();
 	
-	String getBoatName();
+	void setRegattaHost(String string);
+	String getRegattaHost();
 
 	String getString();
 
