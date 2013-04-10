@@ -6,4 +6,5 @@ resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/release
 
 // Use the Play sbt plugin for Play projects
 addSbtPlugin("play" % "sbt-plugin" % "2.1.1-RC2")
+
 addSbtPlugin("de.johoop" % "jacoco4sbt" % "1.2.4")
