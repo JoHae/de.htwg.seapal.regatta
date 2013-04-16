@@ -14,7 +14,7 @@ public class Db4oDatabase implements IRegattaDatabase {
 	private ObjectContainer db;
 	
 	public Db4oDatabase() {
-		db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),"regatta.data");
+		db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),"target/regatta.data");
 	}
 
 	@Override

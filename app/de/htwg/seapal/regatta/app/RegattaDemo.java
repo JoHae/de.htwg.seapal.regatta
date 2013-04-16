@@ -10,7 +10,7 @@ import com.google.inject.Injector;
 import de.htwg.seapal.regatta.controllers.IRegattaController;
 import de.htwg.seapal.regatta.views.tui.RegattaTUI;
 
-public class RegattaDemo {
+public final class RegattaDemo {
 	
 	private RegattaDemo() {}
 

@@ -61,6 +61,11 @@ public class Db4oTest {
 	
 	@Test
 	public void testValueChanged() {
-		
+		String oldName = regatta1.getName();
+		String newName = "Test1234";
+		db.saveRegatta(regatta1);
+		assertTrue(db.getRegattaById(ID_1).getName() == oldName);
+		regatta1.setName(newName);
+		assertTrue(db.getRegattaById(ID_1).getName() == newName);
 	}
 }
