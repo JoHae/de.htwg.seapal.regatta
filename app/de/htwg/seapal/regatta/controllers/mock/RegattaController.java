@@ -7,24 +7,23 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import de.htwg.seapal.regatta.controllers.AbstractRegattaController;
-import de.htwg.seapal.regatta.models.IRegatta;
 
 @Singleton
 public class RegattaController extends AbstractRegattaController {
 	
 	@Inject
-	public RegattaController(IRegatta regatta) {
+	public RegattaController() {
 	}
 	
 	@Override
 	public Map<String, String> getRegattaList() {
 		
-		Map<String,String> RegattaMap = new HashMap<String,String>();
-		RegattaMap.put("Regatta-1", "Testregatta Yachtclub");
-		RegattaMap.put("Regatta-2", "Rundfahrt Peter");
-		RegattaMap.put("Regatta-3", "Abcdefg Mr.Wollowitz");
+		Map<String,String> regattaMap = new HashMap<String,String>();
+		regattaMap.put("Regatta-1", "Testregatta Yachtclub");
+		regattaMap.put("Regatta-2", "Rundfahrt Peter");
+		regattaMap.put("Regatta-3", "Abcdefg Mr.Wollowitz");
 		
-		return RegattaMap;
+		return regattaMap;
 	}
 	
 	@Override

@@ -11,6 +11,8 @@ import de.htwg.seapal.regatta.controllers.IRegattaController;
 import de.htwg.seapal.regatta.views.tui.RegattaTUI;
 
 public class RegattaDemo {
+	
+	private RegattaDemo() {}
 
 	/**
 	 * @param args

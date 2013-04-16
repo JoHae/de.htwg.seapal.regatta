@@ -8,7 +8,7 @@ import de.htwg.seapal.regatta.util.observer.Observable;
 
 public abstract class AbstractRegattaController extends Observable implements IRegattaController {
 
-	protected IRegattaDatabase database;
+	private IRegattaDatabase database;
 	
 	public AbstractRegattaController() {
 		database = new RegattaHashMapDatabase();

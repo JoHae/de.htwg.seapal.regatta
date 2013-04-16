@@ -9,11 +9,11 @@ import com.db4o.query.Predicate;
 import de.htwg.seapal.regatta.database.IRegattaDatabase;
 import de.htwg.seapal.regatta.models.IRegatta;
 
-public class db4oDatabase implements IRegattaDatabase {
+public class Db4oDatabase implements IRegattaDatabase {
 	
-	ObjectContainer db;
+	private ObjectContainer db;
 	
-	public db4oDatabase() {
+	public Db4oDatabase() {
 		db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),"regatta.data");
 	}
 
@@ -43,8 +43,6 @@ public class db4oDatabase implements IRegattaDatabase {
 		
 		if(regattas.isEmpty()) {
 			return null;			
-		} else if(regattas.size() > 1) {
-			// TODO Handle it in here ?
 		}
 		return regattas.get(0);
 	}

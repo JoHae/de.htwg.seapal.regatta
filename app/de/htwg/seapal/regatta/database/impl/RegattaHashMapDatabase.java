@@ -1,13 +1,14 @@
 package de.htwg.seapal.regatta.database.impl;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import de.htwg.seapal.regatta.database.IRegattaDatabase;
 import de.htwg.seapal.regatta.models.IRegatta;
 
 public class RegattaHashMapDatabase implements IRegattaDatabase {
 
-	private HashMap<String, IRegatta> database = new HashMap<String, IRegatta>();
+	private Map<String, IRegatta> database = new HashMap<String, IRegatta>();
 
 	@Override
 	public void saveRegatta(IRegatta regatta) {
