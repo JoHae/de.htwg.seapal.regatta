@@ -27,33 +27,33 @@ public class RegattaTUI implements IObserver, Plugin {
 		Scanner scanner = new Scanner(line);
 
 		scanner.useDelimiter(" ");
-		String command = null;
+		char command;
 		String[] commandLine;
 
 		try {
 			scanner.next();
 			commandLine = line.split(" ");
-			command = commandLine[0];
+			command = commandLine[0].charAt(0);
 
 			switch (command) {
 
-			case "q":
+			case 'q':
 				continu = false;
 				break;
 
-			case "a":
+			case 'a':
 				controller.addRegatta(scanner.next());
 				break;
 
-			case "n":
+			case 'n':
 				controller.setRegattaName(scanner.next(), scanner.next());
 				break;
 
-			case "h":
+			case 'h':
 				controller.setRegattaHost(scanner.next(), scanner.next());
 				break;
 
-			case "p":
+			case 'p':
 				System.out.println(controller.getRegattaString(scanner.next()));
 				printTUI();
 				break;
