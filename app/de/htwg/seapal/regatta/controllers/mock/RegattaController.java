@@ -1,5 +1,6 @@
 package de.htwg.seapal.regatta.controllers.mock;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import com.google.inject.Inject;
@@ -54,6 +55,54 @@ public class RegattaController extends Observable implements IRegattaController 
 
 	@Override
 	public String getRegattaString(String regattaId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setRegattaEstimatedStartTime(String regattaId, Date date) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Date getRegattaEstimatedStartTime(String regattaId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setRegattaEstimatedFinishTime(String regattaId, Date date) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Date getRegattaEstimatedFinishTime(String regattaId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setRegattaRealStartTime(String regattaId, Date date) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Date getRegattaRealStartTime(String regattaId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setRegattaRealFinishTime(String regattaId, Date date) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Date getRegattaRealFinishTime(String regattaId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

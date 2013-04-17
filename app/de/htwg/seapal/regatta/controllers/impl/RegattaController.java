@@ -1,5 +1,6 @@
 package de.htwg.seapal.regatta.controllers.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import com.google.inject.Inject;
@@ -82,6 +83,85 @@ public class RegattaController extends Observable implements IRegattaController 
 	public String getRegattaString(String regattaId) {
 		if (database.containsRegatta(regattaId)) {
 			return database.getRegattaById(regattaId).getString();
+		} else {
+			return null;
+		}
+	}
+	@Override
+	public void setRegattaEstimatedStartTime(String regattaId, Date date) {
+		if (database.containsRegatta(regattaId)) {
+			IRegatta regatta = database.getRegattaById(regattaId);
+			regatta.setEstimatedStartTime(date);
+			database.saveRegatta(regatta);
+		}
+		notifyObservers();
+		
+	}
+
+	@Override
+	public Date getRegattaEstimatedStartTime(String regattaId) {
+		if(database.containsRegatta(regattaId)) {
+			return database.getRegattaById(regattaId).getEstimatedStartTime();
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public void setRegattaEstimatedFinishTime(String regattaId, Date date) {
+		if (database.containsRegatta(regattaId)) {
+			IRegatta regatta = database.getRegattaById(regattaId);
+			regatta.setEstimatedFinishTime(date);
+			database.saveRegatta(regatta);
+		}
+		notifyObservers();
+		
+	}
+
+	@Override
+	public Date getRegattaEstimatedFinishTime(String regattaId) {
+		if(database.containsRegatta(regattaId)) {
+			return database.getRegattaById(regattaId).getEstimatedFinishTime();
+		} else  {
+			return null;
+		}
+	}
+
+	@Override
+	public void setRegattaRealStartTime(String regattaId, Date date) {
+		if (database.containsRegatta(regattaId)) {
+			IRegatta regatta = database.getRegattaById(regattaId);
+			regatta.setRealStartTime(date);
+			database.saveRegatta(regatta);
+		}
+		notifyObservers();
+		
+	}
+
+	@Override
+	public Date getRegattaRealStartTime(String regattaId) {
+		if (database.containsRegatta(regattaId)) {
+			return database.getRegattaById(regattaId).getRealStartTime();
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public void setRegattaRealFinishTime(String regattaId, Date date) {
+		if (database.containsRegatta(regattaId)) {
+			IRegatta regatta = database.getRegattaById(regattaId);
+			regatta.setRealFinishTime(date);
+			database.saveRegatta(regatta);
+		}
+		notifyObservers();
+		
+	}
+
+	@Override
+	public Date getRegattaRealFinishTime(String regattaId) {
+		if (database.containsRegatta(regattaId)) {
+			return database.getRegattaById(regattaId).getRealFinishTime();
 		} else {
 			return null;
 		}

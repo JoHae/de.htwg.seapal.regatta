@@ -1,6 +1,7 @@
 package de.htwg.seapal.regatta.views.tui;
 
 import java.io.PrintStream;
+import java.util.Date;
 import java.util.Scanner;
 
 import de.htwg.seapal.regatta.controllers.IRegattaController;
@@ -69,6 +70,14 @@ public class RegattaTUI implements IObserver, Plugin {
 			case 'p':
 				printCommand(scanner);
 				break;
+				
+			case 's':
+				changeRegattaStartTime(scanner);
+				break;
+				
+			case 'f':
+				changeRegattaFinishTime(scanner);
+				break;
 
 			default:
 				OUT.println(UNKNOWNCOMMAND);
@@ -83,6 +92,29 @@ public class RegattaTUI implements IObserver, Plugin {
 		return continu;
 	}
 	
+	private void changeRegattaFinishTime(Scanner scanner) {
+		if (!scanner.hasNext()) {
+			OUT.println(MISSINGID);
+			printTUI();
+		} else {
+			String regattaId = scanner.next();
+			controller.setRegattaRealFinishTime(regattaId, new Date());
+		}
+		 
+		
+	}
+
+	private void changeRegattaStartTime(Scanner scanner) {
+		if (!scanner.hasNext()) {
+			OUT.println(MISSINGID);
+			printTUI();
+		} else {
+			String regattaId = scanner.next();
+			controller.setRegattaRealStartTime(regattaId, new Date());
+		}
+		
+	}
+
 	private void addRegattaCommand(Scanner scanner) {
 		if (!scanner.hasNext()) {
 			OUT.println(MISSINGID);
@@ -154,6 +186,8 @@ public class RegattaTUI implements IObserver, Plugin {
 		sb.append("a <ID>        - add Regatta with specified ID").append("\n");
 		sb.append("n <ID> <NAME> - set Name of Regatta with ID = <ID>").append("\n");
 		sb.append("h <ID> <HOST> - set Host of Regatta with ID = <ID>").append("\n");
+		sb.append("s <ID>		- set Start Time of Regatta with ID = <ID>").append("\n");
+		sb.append("f <ID> 		- set Finish Time of Regatta with ID = <ID>").append("\n");
 		sb.append("p <ID>        - print Data of Regatta with ID = <ID>").append("\n");
 		sb.append("q             - End this Demo").append("\n");
 		sb.append("\n");
