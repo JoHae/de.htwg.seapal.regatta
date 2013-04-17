@@ -153,7 +153,7 @@ public class RegattaTUI implements IObserver, Plugin {
 		sb.append("n <ID> <NAME> - set Name of Regatta with ID = <ID>").append("\n");
 		sb.append("h <ID> <HOST> - set Host of Regatta with ID = <ID>").append("\n");
 		sb.append("p <ID>        - print Data of Regatta with ID = <ID>").append("\n");
-		sb.append("p             - End this Demo").append("\n");
+		sb.append("q             - End this Demo").append("\n");
 		sb.append("\n");
 		sb.append(">>");
 
