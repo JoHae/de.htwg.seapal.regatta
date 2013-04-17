@@ -14,7 +14,7 @@ public class RegattaTUI implements IObserver, Plugin {
 	private static final String MISSINGID = "Missing ID! Please try again ...";
 	private static final String MISSINGVALUE = "Missing value! Please try again ...";
 	private static final String UNKNOWNCOMMAND = "Unknown Command! Please try again ...";
-	private static final PrintStream out = System.out;
+	private static final PrintStream OUT = System.out;
 
 	public RegattaTUI(IRegattaController controller) {
 		this.controller = controller;
@@ -39,7 +39,7 @@ public class RegattaTUI implements IObserver, Plugin {
 			commandLine = line.split(" ");
 			
 			if (commandLine[0].length() != 1) {
-				out.println(UNKNOWNCOMMAND); 
+				OUT.println(UNKNOWNCOMMAND); 
 				printTUI();
 				scanner.close();
 				return continu;
@@ -51,7 +51,7 @@ public class RegattaTUI implements IObserver, Plugin {
 
 			case 'q':
 				continu = false;
-				out.println("Quitting ...");
+				OUT.println("Quitting ...");
 				break;
 
 			case 'a':
@@ -71,7 +71,7 @@ public class RegattaTUI implements IObserver, Plugin {
 				break;
 
 			default:
-				out.println(UNKNOWNCOMMAND);
+				OUT.println(UNKNOWNCOMMAND);
 				printTUI();
 			}
 		} catch (Exception ex) {
@@ -85,7 +85,7 @@ public class RegattaTUI implements IObserver, Plugin {
 	
 	private void addRegattaCommand(Scanner scanner) {
 		if (!scanner.hasNext()) {
-			out.println(MISSINGID);
+			OUT.println(MISSINGID);
 			printTUI();
 		} else {
 			controller.addRegatta(scanner.next());
@@ -97,7 +97,7 @@ public class RegattaTUI implements IObserver, Plugin {
 		String value;
 		
 		if(!scanner.hasNext()) {
-			out.println(MISSINGID);
+			OUT.println(MISSINGID);
 			printTUI();
 			return;
 		} else {
@@ -105,7 +105,7 @@ public class RegattaTUI implements IObserver, Plugin {
 		}
 		
 		if(!scanner.hasNext()) {
-			out.println(MISSINGVALUE);
+			OUT.println(MISSINGVALUE);
 			printTUI();
 			return;
 		} else {
@@ -119,7 +119,7 @@ public class RegattaTUI implements IObserver, Plugin {
 		String value;
 		
 		if(!scanner.hasNext()) {
-			out.println(MISSINGID);
+			OUT.println(MISSINGID);
 			printTUI();
 			return;
 		} else {
@@ -127,7 +127,7 @@ public class RegattaTUI implements IObserver, Plugin {
 		}
 		
 		if(!scanner.hasNext()) {
-			out.println(MISSINGVALUE);
+			OUT.println(MISSINGVALUE);
 			printTUI();
 			return;
 		} else {
@@ -138,9 +138,9 @@ public class RegattaTUI implements IObserver, Plugin {
 
 	private void printCommand(Scanner scanner) {
 		if (!scanner.hasNext()) {
-			out.println(MISSINGID);
+			OUT.println(MISSINGID);
 		} else {
-			out.println(controller.getRegattaString(scanner.next()));
+			OUT.println(controller.getRegattaString(scanner.next()));
 		}
 		printTUI();
 	}
@@ -159,7 +159,7 @@ public class RegattaTUI implements IObserver, Plugin {
 		sb.append("\n");
 		sb.append(">>");
 
-		out.print(sb.toString());
+		OUT.print(sb.toString());
 	}
 
 	@Override

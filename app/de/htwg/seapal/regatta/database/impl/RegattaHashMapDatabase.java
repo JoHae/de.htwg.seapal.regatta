@@ -42,7 +42,7 @@ public class RegattaHashMapDatabase implements IRegattaDatabase {
 	    while (it.hasNext()) {
 	        Entry<String, IRegatta> pairs = it.next();
 	        regattaIds.add(pairs.getKey());
-	        it.remove(); // avoids a ConcurrentModificationException
+	        it.remove();
 	    }
 	    
 		return regattaIds;
