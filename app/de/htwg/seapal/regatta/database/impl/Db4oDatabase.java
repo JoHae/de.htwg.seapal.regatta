@@ -1,5 +1,7 @@
 package de.htwg.seapal.regatta.database.impl;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.db4o.Db4oEmbedded;
@@ -49,10 +51,25 @@ public class Db4oDatabase implements IRegattaDatabase {
 
 	@Override
 	public void deleteRegattaById(String regattaId) {
-		db.delete(getRegattaById(regattaId));
+		IRegatta regatta = getRegattaById(regattaId);
+		if (regatta != null) {
+			db.delete(regatta);
+		}
 	}
 	
 	public void closeDb() {
 		db.close();
+	}
+
+	@Override
+	public List<String> getAllRegattaIds() {
+		List<String> regattaIds = new LinkedList<String>();
+		List<IRegatta> result = db.query(IRegatta.class);
+		Iterator<IRegatta> it = result.iterator();
+		
+		while(it.hasNext()) {
+			regattaIds.add(it.next().getId());
+		}
+		return regattaIds;
 	}
 }

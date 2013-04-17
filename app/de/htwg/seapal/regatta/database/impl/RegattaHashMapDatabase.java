@@ -1,7 +1,11 @@
 package de.htwg.seapal.regatta.database.impl;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import de.htwg.seapal.regatta.database.IRegattaDatabase;
 import de.htwg.seapal.regatta.models.IRegatta;
@@ -28,5 +32,19 @@ public class RegattaHashMapDatabase implements IRegattaDatabase {
 	@Override
 	public void deleteRegattaById(String regattaId) {
 		database.remove(regattaId);
+	}
+
+	@Override
+	public List<String> getAllRegattaIds() {
+		List<String> regattaIds = new LinkedList<String>();
+		
+		Iterator<Entry<String, IRegatta>> it = database.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Entry<String, IRegatta> pairs = it.next();
+	        regattaIds.add(pairs.getKey());
+	        it.remove(); // avoids a ConcurrentModificationException
+	    }
+	    
+		return regattaIds;
 	}
 }
