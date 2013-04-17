@@ -2,14 +2,13 @@ package de.htwg.seapal.regatta.controllers.mock;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
-import de.htwg.seapal.regatta.controllers.AbstractRegattaController;
+import de.htwg.seapal.regatta.controllers.IRegattaController;
+import de.htwg.seapal.regatta.util.observer.Observable;
 
 @Singleton
-public class RegattaController extends AbstractRegattaController {
+public class RegattaController extends Observable implements IRegattaController {
 	
 	@Inject
 	public RegattaController() {
@@ -41,4 +40,21 @@ public class RegattaController extends AbstractRegattaController {
 
 	@Override
 	public void setRegattaHost(String regattaId, String host) {}
+
+	@Override
+	public void addRegatta(String regattaId) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void deleteRegattaById(String regattaId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getRegattaString(String regattaId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

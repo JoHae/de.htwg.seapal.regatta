@@ -18,6 +18,7 @@ public class RegattaDemoImplModule extends AbstractModule {
 	protected void configure() {
 		bind(IRegatta.class).to(de.htwg.seapal.regatta.models.impl.Regatta.class);
 		bind(IRegattaController.class).to(de.htwg.seapal.regatta.controllers.impl.RegattaController.class);
+		
 		bind(IRegattaDatabase.class).to(de.htwg.seapal.regatta.database.impl.RegattaHashMapDatabase.class);
 		
 		bind(IBoatController.class).to(de.htwg.seapal.boat.controllers.mock.BoatController.class);
