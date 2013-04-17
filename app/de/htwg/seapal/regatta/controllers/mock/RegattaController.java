@@ -1,7 +1,7 @@
 package de.htwg.seapal.regatta.controllers.mock;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -16,12 +16,12 @@ public class RegattaController extends AbstractRegattaController {
 	}
 	
 	@Override
-	public Map<String, String> getRegattaList() {
+	public List<String> getRegattaIds() {
 		
-		Map<String,String> regattaMap = new HashMap<String,String>();
-		regattaMap.put("Regatta-1", "Testregatta Yachtclub");
-		regattaMap.put("Regatta-2", "Rundfahrt Peter");
-		regattaMap.put("Regatta-3", "Abcdefg Mr.Wollowitz");
+		List<String> regattaMap = new LinkedList<String>();
+		regattaMap.add("Regatta-1");
+		regattaMap.add("Regatta-2");
+		regattaMap.add("Regatta-3");
 		
 		return regattaMap;
 	}

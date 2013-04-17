@@ -5,8 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+import de.htwg.seapal.regatta.app.RegattaDemoImplModule;
 import de.htwg.seapal.regatta.controllers.IRegattaController;
-import de.htwg.seapal.regatta.controllers.impl.RegattaController;
 import de.htwg.seapal.regatta.views.tui.RegattaTUI;
 
 public class RegattaTUITest {
@@ -14,8 +17,9 @@ public class RegattaTUITest {
 	private RegattaTUI regatta;
 
 	@Before
-	public void setup(){
-		IRegattaController controller = new RegattaController();
+	public void setup() {
+		Injector injector = Guice.createInjector(new RegattaDemoImplModule());
+		IRegattaController controller = injector.getInstance(IRegattaController.class);
 		regatta = new RegattaTUI(controller);
 	}
 

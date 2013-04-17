@@ -1,5 +1,7 @@
 package de.htwg.seapal.regatta.controllers;
 
+import java.util.List;
+
 import de.htwg.seapal.regatta.database.IRegattaDatabase;
 import de.htwg.seapal.regatta.database.impl.RegattaHashMapDatabase;
 import de.htwg.seapal.regatta.models.IRegatta;
@@ -18,7 +20,16 @@ public abstract class AbstractRegattaController extends Observable implements IR
 	public void addRegatta(String regattaId) {
 		IRegatta regatta = new Regatta();
 		regatta.setId(regattaId);
+		if(database.containsRegatta(regattaId)) {
+			throw new IllegalArgumentException();
+		}		
 		database.saveRegatta(regatta);
+		notifyObservers();
+	}
+	
+	@Override
+	public void deleteRegattaById(String regattaId) {
+		database.deleteRegattaById(regattaId);
 		notifyObservers();
 	}
 
@@ -69,4 +80,8 @@ public abstract class AbstractRegattaController extends Observable implements IR
 		}
 	}
 
+	@Override
+	public List<String> getRegattaIds() {
+		return database.getAllRegattaIds();
+	}
 }
