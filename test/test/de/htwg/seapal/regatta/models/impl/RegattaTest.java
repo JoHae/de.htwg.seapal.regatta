@@ -1,31 +1,56 @@
 package test.de.htwg.seapal.regatta.models.impl;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 
+import de.htwg.seapal.regatta.models.IRegatta;
 import de.htwg.seapal.regatta.models.impl.Regatta;
 
 public class RegattaTest {
 
-	private Regatta regatta;
+	private IRegatta regatta;
 
 	@Before
-	public void setup(){
-		regatta = new Regatta();	
+	public void setup() {
+		regatta = new Regatta();
 	}
 
 	@Test
-	public void testName() {
-		String teststring = "Testregatta";
-		regatta.setName(teststring);
-		assertEquals(teststring, regatta.getName());
+	public void testGetId() {
+		regatta.setId("0");
+		assertEquals("0", regatta.getId());
 	}
 	
 	@Test
-	public void testHost() {
-		String teststring = "Hulk Hogan";
-		regatta.setHost(teststring);
-		assertEquals(teststring, regatta.getHost());
+	public void testGetName() {
+		regatta.setName("Testregatta-");
+		assertEquals("Testregatta-", regatta.getName());
+	}
+
+	@Test
+	public void testGetHost() {
+		regatta.setHost("EinHost");
+		assertEquals("EinHost", regatta.getHost());
+	}
+	
+	@Test
+	public void testGetString() {
+		IRegatta regatta = new Regatta();
+		regatta.setHost("host");
+		regatta.setId("1");
+		regatta.setName("So isses");
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("\n");
+		sb.append("ID:\t").append("1").append("\n");
+		sb.append("Name:\t").append("So isses").append("\n");
+		sb.append("Host:\t").append("host").append("\n");
+
+		sb.append("\n");
+		
+		assertEquals(sb.toString(), regatta.getString());
 	}
 }

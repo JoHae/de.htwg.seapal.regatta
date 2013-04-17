@@ -56,6 +56,7 @@ public class Db4oTest {
 	public void testContains() {
 		db.saveRegatta(regatta1);
 		assertTrue(db.containsRegatta(ID_1));
+		assertFalse(db.containsRegatta(ID_2));
 	}
 	
 	@Test
@@ -79,9 +80,7 @@ public class Db4oTest {
 	public void testRegattaIds() {
 		db.saveRegatta(regatta1);
 		db.saveRegatta(regatta2);
-		
 		List<String> regattaIds = db.getAllRegattaIds();
-		System.out.println(regattaIds);
 		assertTrue(regattaIds.size() == 2);
 		assertTrue(regattaIds.contains(ID_1));
 		assertTrue(regattaIds.contains(ID_2));

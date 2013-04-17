@@ -27,7 +27,7 @@ public class Db4oDatabase implements IRegattaDatabase {
 	@Override
 	public boolean containsRegatta(final String regattaId) {
 		if(getRegattaById(regattaId) == null) {
-			return false;			
+			return false;
 		}
 		return true;
 	}

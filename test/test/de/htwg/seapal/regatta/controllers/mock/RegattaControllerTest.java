@@ -1,6 +1,9 @@
-package test.de.htwg.seapal.reagatta.controllers.mock;
+package test.de.htwg.seapal.regatta.controllers.mock;
 
 import static org.junit.Assert.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +41,16 @@ public class RegattaControllerTest {
 	@Test
 	public void testGetRegattaHost() {	
 		assertEquals("Yachtclub", regattaController.getRegattaHost(ID));
+	}
+	
+	@Test
+	public void testGetRegattaList() {	
+		Map<String,String> regattaMap = new HashMap<String,String>();
+		regattaMap.put("Regatta-1", "Testregatta Yachtclub");
+		regattaMap.put("Regatta-2", "Rundfahrt Peter");
+		regattaMap.put("Regatta-3", "Abcdefg Mr.Wollowitz");
+		
+		assertEquals(regattaMap, regattaController.getRegattaList());
 	}
 
 }

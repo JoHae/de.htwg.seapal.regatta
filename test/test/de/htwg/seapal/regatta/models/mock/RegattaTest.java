@@ -1,4 +1,4 @@
-package test.de.htwg.seapal.reagatta.models.mock;
+package test.de.htwg.seapal.regatta.models.mock;
 
 import static org.junit.Assert.*;
 
@@ -29,6 +29,16 @@ public class RegattaTest {
 	@Test
 	public void testGetHost() {
 		assertEquals("Yachtclub Hulk Hogan", regatta.getHost());
+	}
+	
+	@Test
+	public void testSetter() {
+		regatta.setName("asdf");
+		regatta.setHost("host");
+		regatta.setId("test");
+		assertNotSame("asdf", regatta.getName());
+		assertNotSame("host", regatta.getHost());
+		assertNotSame("test", regatta.getId());
 	}
 
 }

@@ -14,6 +14,8 @@ public class RegattaController extends AbstractRegattaController {
 
 	@Override
 	public Map<String, String> getRegattaList() {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
 }
