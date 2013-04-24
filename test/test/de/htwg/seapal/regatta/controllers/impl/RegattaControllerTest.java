@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.google.inject.Guice;
@@ -67,6 +68,7 @@ public class RegattaControllerTest {
 		assertEquals(null, regattaController.getRegattaHost("EINE_NICHT_EXISTIERENDE_ID"));
 	}
 	
+	@Ignore("Dev - Status")
 	@Test
 	public void testGetRegattaString() {
 		String id = "0";
