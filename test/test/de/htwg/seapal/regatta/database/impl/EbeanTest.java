@@ -2,25 +2,36 @@ package test.de.htwg.seapal.regatta.database.impl;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.util.List;
 
 import org.junit.*;
 
-import de.htwg.seapal.regatta.database.impl.RegattaDb4oDatabase;
+import play.api.Application;
+import play.api.DefaultApplication;
+import play.api.Mode;
+import play.api.Play;
+import test.de.htwg.seapal.regatta.controllers.impl.RegattaControllerTest;
+
+import de.htwg.seapal.regatta.database.impl.RegattaEbeanDatabase;
 import de.htwg.seapal.regatta.models.IRegatta;
 import de.htwg.seapal.regatta.models.impl.Regatta;
 
-public class Db4oTest {
+public class EbeanTest {
 
 	private static IRegatta regatta1;
 	private static IRegatta regatta2;
-	private static RegattaDb4oDatabase db;
+	private static RegattaEbeanDatabase db;
 	private static String ID_1 = "1";
 	private static String ID_2 = "2";
 	
 	@BeforeClass
 	public static void start() {
-		db = new RegattaDb4oDatabase();
+		Application play = new DefaultApplication(new File("."),
+				RegattaControllerTest.class.getClassLoader(), null, Mode.Dev());
+		Play.start(play);
+		
+		db = new RegattaEbeanDatabase();
 		
 		regatta1 = new Regatta();
 		regatta1.setId(ID_1);
@@ -43,7 +54,7 @@ public class Db4oTest {
 	
 	@AfterClass
 	public static void afterClass() {
-		db.closeDb();
+		Play.stop();
 	}
 	
 	@After
@@ -57,28 +68,24 @@ public class Db4oTest {
 		db.saveRegatta(regatta1);
 		assertTrue(db.containsRegatta(ID_1));
 		assertFalse(db.containsRegatta(ID_2));
-		db.deleteRegattaById(regatta1.getId());
 	}
 	
 	@Test
 	public void testDelete() {
 		db.saveRegatta(regatta1);
 		assertTrue(db.containsRegatta(ID_1));
-		db.deleteRegattaById(regatta1.getId());
-		assertFalse(db.containsRegatta(ID_1));
+		db.deleteRegattaById(ID_1);
 	}
 	
 	@Test
 	public void testValueChanged() {
 		String oldName = regatta1.getName();
 		String newName = "Test1234";
-		
 		db.saveRegatta(regatta1);
 		assertTrue(db.getRegattaById(ID_1).getName() == oldName);
-		
 		regatta1.setName(newName);
+		db.saveRegatta(regatta1);
 		assertTrue(db.getRegattaById(ID_1).getName() == newName);
-		db.deleteRegattaById(regatta1.getId());
 	}
 	
 	@Test
@@ -89,7 +96,5 @@ public class Db4oTest {
 		assertTrue(regattaIds.size() == 2);
 		assertTrue(regattaIds.contains(ID_1));
 		assertTrue(regattaIds.contains(ID_2));
-		db.deleteRegattaById(regatta1.getId());
-		db.deleteRegattaById(regatta2.getId());
 	}
 }

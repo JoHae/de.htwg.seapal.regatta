@@ -14,7 +14,12 @@ public class RegattaEbeanDatabase implements IRegattaDatabase {
 
 	@Override
 	public void saveRegatta(IRegatta regatta) {
-		Ebean.save(regatta);
+		if(containsRegatta(regatta.getId())) {
+			Ebean.update(regatta);
+		} else {
+			Regatta tRegatta = new Regatta(regatta);
+			Ebean.save(tRegatta);
+		}
 	}
 
 	@Override

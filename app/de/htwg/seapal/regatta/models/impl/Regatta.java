@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import de.htwg.seapal.regatta.models.AbstractRegatta;
+import de.htwg.seapal.regatta.models.IRegatta;
 
 @Entity
 public class Regatta extends AbstractRegatta {
@@ -34,6 +35,18 @@ public class Regatta extends AbstractRegatta {
 	@Column
 	private Date realFinishTime = null;
 	
+	public Regatta() {}
+	
+	public Regatta(IRegatta regatta) {
+		this.id = regatta.getId();
+		this.name = regatta.getName();
+		this.host = regatta.getHost();
+		this.estimatedStartTime = regatta.getEstimatedStartTime();
+		this.estimatedFinishTime = regatta.getEstimatedFinishTime();
+		this.realStartTime = regatta.getRealStartTime();
+		this.realFinishTime = regatta.getRealFinishTime();
+	}
+
 	public String getId() {
 		return id;
 	}
