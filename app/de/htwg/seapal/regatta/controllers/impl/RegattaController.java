@@ -9,7 +9,6 @@ import com.google.inject.Singleton;
 import de.htwg.seapal.boat.controllers.IBoatController;
 import de.htwg.seapal.regatta.controllers.IRegattaController;
 import de.htwg.seapal.regatta.database.IRegattaDatabase;
-import de.htwg.seapal.regatta.database.impl.RegattaHashMapDatabase;
 import de.htwg.seapal.regatta.models.IRegatta;
 import de.htwg.seapal.regatta.models.impl.Regatta;
 import de.htwg.seapal.regatta.util.observer.Observable;
@@ -17,12 +16,11 @@ import de.htwg.seapal.regatta.util.observer.Observable;
 @Singleton
 public class RegattaController extends Observable implements IRegattaController {
 	
-	private IRegattaDatabase database;
-	
 	@Inject
-	public RegattaController(IBoatController boatController) {
-		database = new RegattaHashMapDatabase();
-	}
+	private IRegattaDatabase database;
+
+	@Inject
+	private IBoatController boatController;
 	
 	@Override
 	public void addRegatta(String regattaId) {
@@ -95,7 +93,6 @@ public class RegattaController extends Observable implements IRegattaController 
 			database.saveRegatta(regatta);
 		}
 		notifyObservers();
-		
 	}
 
 	@Override

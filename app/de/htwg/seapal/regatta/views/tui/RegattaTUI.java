@@ -1,7 +1,8 @@
 package de.htwg.seapal.regatta.views.tui;
 
 import java.io.PrintStream;
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import de.htwg.seapal.regatta.controllers.IRegattaController;
@@ -72,11 +73,11 @@ public class RegattaTUI implements IObserver, Plugin {
 				break;
 				
 			case 's':
-				changeRegattaStartTime(scanner);
+				changeRegattaEstimatedStartTime(scanner);
 				break;
 				
 			case 'f':
-				changeRegattaFinishTime(scanner);
+				changeRegattaEstimatedFinishTime(scanner);
 				break;
 
 			default:
@@ -84,7 +85,7 @@ public class RegattaTUI implements IObserver, Plugin {
 				printTUI();
 			}
 		} catch (Exception ex) {
-			ex.getMessage();
+			ex.printStackTrace();
 		} finally {
 			scanner.close();
 			scanner = null;
@@ -92,27 +93,62 @@ public class RegattaTUI implements IObserver, Plugin {
 		return continu;
 	}
 	
-	private void changeRegattaFinishTime(Scanner scanner) {
-		if (!scanner.hasNext()) {
+	private void changeRegattaEstimatedFinishTime(Scanner scanner) {
+		String regattaId;
+		String value;
+		
+		if(!scanner.hasNext()) {
 			OUT.println(MISSINGID);
 			printTUI();
+			return;
 		} else {
-			String regattaId = scanner.next();
-			controller.setRegattaRealFinishTime(regattaId, new Date());
+			regattaId = scanner.next();
 		}
-		 
 		
+		if(!scanner.hasNext()) {
+			OUT.println(MISSINGVALUE);
+			printTUI();
+			return;
+		} else {
+			value = scanner.next();
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/hh:mm:ss");
+			try {
+				controller.setRegattaEstimatedFinishTime(regattaId, formatter.parse(value));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
-	private void changeRegattaStartTime(Scanner scanner) {
-		if (!scanner.hasNext()) {
+	private void changeRegattaEstimatedStartTime(Scanner scanner) {
+		String regattaId;
+		String value;
+		
+		if(!scanner.hasNext()) {
 			OUT.println(MISSINGID);
 			printTUI();
+			return;
 		} else {
-			String regattaId = scanner.next();
-			controller.setRegattaRealStartTime(regattaId, new Date());
+			regattaId = scanner.next();
 		}
 		
+		if(!scanner.hasNext()) {
+			OUT.println(MISSINGVALUE);
+			printTUI();
+			return;
+		} else {
+			value = scanner.next();
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/hh:mm:ss");
+			try {
+				controller.setRegattaEstimatedFinishTime(regattaId, formatter.parse(value));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private void addRegattaCommand(Scanner scanner) {
@@ -186,10 +222,11 @@ public class RegattaTUI implements IObserver, Plugin {
 		sb.append("a <ID>        - add Regatta with specified ID").append("\n");
 		sb.append("n <ID> <NAME> - set Name of Regatta with ID = <ID>").append("\n");
 		sb.append("h <ID> <HOST> - set Host of Regatta with ID = <ID>").append("\n");
-		sb.append("s <ID>		- set Start Time of Regatta with ID = <ID>").append("\n");
-		sb.append("f <ID> 		- set Finish Time of Regatta with ID = <ID>").append("\n");
+		sb.append("s <ID>		 - set estimated Start Time of Regatta with ID = <ID>").append("\n");
+		sb.append("f <ID> 		 - set estimated Finish Time of Regatta with ID = <ID>").append("\n");
 		sb.append("p <ID>        - print Data of Regatta with ID = <ID>").append("\n");
 		sb.append("q             - End this Demo").append("\n");
+		sb.append("Please specify Dates in the following format: 'dd/MM/yyyy/HH:mm:ss'");
 		sb.append("\n");
 		sb.append(">>");
 

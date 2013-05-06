@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.junit.*;
 
-import de.htwg.seapal.regatta.database.impl.Db4oDatabase;
+import de.htwg.seapal.regatta.database.impl.RegattaDb4oDatabase;
 import de.htwg.seapal.regatta.models.IRegatta;
 import de.htwg.seapal.regatta.models.impl.Regatta;
 
@@ -14,13 +14,13 @@ public class Db4oTest {
 
 	private static IRegatta regatta1;
 	private static IRegatta regatta2;
-	private static Db4oDatabase db;
+	private static RegattaDb4oDatabase db;
 	private static String ID_1 = "1";
 	private static String ID_2 = "2";
 	
 	@BeforeClass
 	public static void start() {
-		db = new Db4oDatabase();
+		db = new RegattaDb4oDatabase();
 		
 		regatta1 = new Regatta();
 		regatta1.setId(ID_1);

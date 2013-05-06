@@ -1,5 +1,7 @@
 package de.htwg.seapal.regatta.models.mock;
 
+import java.util.Date;
+
 import de.htwg.seapal.regatta.models.AbstractRegatta;
 
 public class Regatta extends AbstractRegatta {
@@ -21,4 +23,36 @@ public class Regatta extends AbstractRegatta {
 	}
 
 	public void setHost(String host) {}
+
+	@Override
+	public Date getEstimatedStartTime() {
+		return new Date();
+	}
+
+	@Override
+	public void setEstimatedStartTime(Date date) {}
+
+	@Override
+	public Date getEstimatedFinishTime() {
+		return new Date();
+	}
+
+	@Override
+	public void setEstimatedFinishTime(Date date) {}
+
+	@Override
+	public Date getRealStartTime() {
+		return new Date();
+	}
+
+	@Override
+	public void setRealStartTime(Date date) {}
+
+	@Override
+	public Date getRealFinishTime() {
+		return new Date();
+	}
+
+	@Override
+	public void setRealFinishTime(Date date) {}
 }
