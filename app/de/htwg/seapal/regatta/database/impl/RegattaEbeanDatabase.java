@@ -17,14 +17,16 @@ public class RegattaEbeanDatabase implements IRegattaDatabase {
 		if(containsRegatta(regatta.getId())) {
 			Ebean.update(regatta);
 		} else {
-			Regatta tRegatta = new Regatta(regatta);
-			Ebean.save(tRegatta);
+			Ebean.save(regatta);
 		}
 	}
 
 	@Override
 	public boolean containsRegatta(String regattaId) {
-		return getRegattaById(regattaId) != null;
+		if(getRegattaById(regattaId) == null) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override

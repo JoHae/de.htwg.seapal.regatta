@@ -33,6 +33,9 @@ public class EbeanTest {
 		
 		db = new RegattaEbeanDatabase();
 		
+		db.deleteRegattaById(ID_1);
+		db.deleteRegattaById(ID_2);		
+		
 		regatta1 = new Regatta();
 		regatta1.setId(ID_1);
 		
@@ -75,6 +78,7 @@ public class EbeanTest {
 		db.saveRegatta(regatta1);
 		assertTrue(db.containsRegatta(ID_1));
 		db.deleteRegattaById(ID_1);
+		assertFalse(db.containsRegatta(ID_1));
 	}
 	
 	@Test
@@ -93,7 +97,7 @@ public class EbeanTest {
 		db.saveRegatta(regatta1);
 		db.saveRegatta(regatta2);
 		List<String> regattaIds = db.getAllRegattaIds();
-		assertTrue(regattaIds.size() == 2);
+		assertTrue(regattaIds.size() >= 2);
 		assertTrue(regattaIds.contains(ID_1));
 		assertTrue(regattaIds.contains(ID_2));
 	}
