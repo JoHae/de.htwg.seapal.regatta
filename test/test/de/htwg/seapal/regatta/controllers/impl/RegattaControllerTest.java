@@ -19,7 +19,6 @@ import play.api.Play;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import de.htwg.seapal.regatta.app.RegattaDemo;
 import de.htwg.seapal.regatta.app.RegattaDemoImplModule;
 import de.htwg.seapal.regatta.controllers.IRegattaController;
 
@@ -35,7 +34,7 @@ public class RegattaControllerTest {
 		regattaController = injector.getInstance(IRegattaController.class);
 		
 		Application play = new DefaultApplication(new File("."),
-				RegattaDemo.class.getClassLoader(), null, Mode.Dev());
+				RegattaControllerTest.class.getClassLoader(), null, Mode.Dev());
 		Play.start(play);
 	}
 	
