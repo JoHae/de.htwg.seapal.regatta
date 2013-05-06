@@ -1,17 +1,25 @@
 package test.de.htwg.seapal.regatta.controllers.impl;
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import play.api.Application;
+import play.api.DefaultApplication;
+import play.api.Mode;
+import play.api.Play;
+
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import de.htwg.seapal.regatta.app.RegattaDemo;
 import de.htwg.seapal.regatta.app.RegattaDemoImplModule;
 import de.htwg.seapal.regatta.controllers.IRegattaController;
 
@@ -25,11 +33,21 @@ public class RegattaControllerTest {
 	public static void setup() {
 		// Build up the application, resolving dependencies automatically by Guice
 		regattaController = injector.getInstance(IRegattaController.class);
+		
+		Application play = new DefaultApplication(new File("."),
+				RegattaDemo.class.getClassLoader(), null, Mode.Dev());
+		Play.start(play);
+	}
+	
+	@AfterClass
+	public static void shutdown() {
+		Play.stop();
 	}
 
 	@Test
 	public void testGetRegattaName() {
 		String id = "0";
+		regattaController.deleteRegattaById(id);
 		regattaController.addRegatta(id);
 		regattaController.setRegattaName(id, "xd");
 		regattaController.setRegattaName("EINE_NICHT_EXISTIERENDE_ID", "xd");
@@ -61,6 +79,7 @@ public class RegattaControllerTest {
 	@Test
 	public void testGetRegattaHost() {
 		String id = "0";
+		regattaController.deleteRegattaById(id);
 		regattaController.addRegatta(id);
 		regattaController.setRegattaHost(id, "EIN_HOST");
 		regattaController.setRegattaHost("EINE_NICHT_EXISTIERENDE_ID", "EIN_HOST");
