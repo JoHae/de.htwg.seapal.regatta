@@ -50,7 +50,7 @@ public class StateEditRegatta implements TuiState {
 		}
 
 		command = commandLine[0].charAt(0);
-
+/*
 		switch (command) {
 
 		case 'n':
@@ -75,7 +75,7 @@ public class StateEditRegatta implements TuiState {
 		default:
 			OUT.println(UNKNOWNCOMMAND);
 			print();
-		}
+		}*/
 
 		return continu;
 	}

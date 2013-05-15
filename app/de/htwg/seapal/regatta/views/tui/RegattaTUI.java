@@ -22,7 +22,7 @@ public class RegattaTUI implements IObserver, Plugin, StateContext {
 	private TuiState currentState;
 
 	public RegattaTUI(IRegattaController controller) {
-		this.currentState = new StateMainMenu();
+		//this.currentState = new StateMainMenu();
 		this.controller = controller;
 		controller.addObserver(this);
 	}

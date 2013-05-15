@@ -37,7 +37,7 @@ public class StateMainMenu implements TuiState {
 
 	@Override
 	public boolean process(StateContext state, String line) {
-
+/*
 		boolean continu = true;
 
 		char command;
@@ -84,7 +84,7 @@ public class StateMainMenu implements TuiState {
 		}
 
 		return continu;
-
+*/
 		return false;
 	}
 	
