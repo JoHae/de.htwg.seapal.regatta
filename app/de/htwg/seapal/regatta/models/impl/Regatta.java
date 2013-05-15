@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import de.htwg.seapal.regatta.models.AbstractRegatta;
 import de.htwg.seapal.regatta.models.IRegatta;
 
@@ -47,10 +49,12 @@ public class Regatta extends AbstractRegatta {
 		this.realFinishTime = regatta.getRealFinishTime();
 	}
 
+	@JsonProperty("_id")
 	public String getId() {
 		return id;
 	}
 
+	@JsonProperty("_id")
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -71,34 +75,42 @@ public class Regatta extends AbstractRegatta {
 		this.host = host;
 	}
 	
+	@JsonProperty("estimated_starttime")
 	public Date getEstimatedStartTime() {
 		return estimatedStartTime;
 	}
 	
+	@JsonProperty("estimated_starttime")
 	public void setEstimatedStartTime(Date d) {
 		this.estimatedStartTime = d;
 	}
 	
+	@JsonProperty("estimated_finishtime")
 	public Date getEstimatedFinishTime() {
 		return estimatedFinishTime;
 	}
 	
+	@JsonProperty("estimated_finishtime")
 	public void setEstimatedFinishTime(Date d) {
 		this.estimatedFinishTime = d;
 	}
 	
+	@JsonProperty("real_starttime")
 	public Date getRealStartTime() {
 		return realStartTime;
 	}
 	
+	@JsonProperty("real_starttime")
 	public void setRealStartTime(Date d) {
 		this.realStartTime = d;
 	}
 	
+	@JsonProperty("real_finishtime")
 	public Date getRealFinishTime() {
 		return realFinishTime;
 	}
 	
+	@JsonProperty("real_finishtime")
 	public void setRealFinishTime(Date d) {
 		this.realFinishTime = d;
 	}
