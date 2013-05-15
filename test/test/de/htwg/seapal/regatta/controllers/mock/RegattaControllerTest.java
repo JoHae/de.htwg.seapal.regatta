@@ -2,6 +2,7 @@ package test.de.htwg.seapal.regatta.controllers.mock;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.Before;
@@ -22,7 +23,7 @@ public class RegattaControllerTest {
 	private static final String ID = "0";
 	
 	@Before
-	public void setup() {
+	public void setup() throws RemoteException {
 		// Build up the application, resolving dependencies automatically by Guice
 		regattaController = injector.getInstance(IRegattaController.class);
 		
@@ -32,18 +33,18 @@ public class RegattaControllerTest {
 	}
 
 	@Test
-	public void testGetRegattaName() {
+	public void testGetRegattaName() throws RemoteException {
 		
 		assertEquals("Testregatta", regattaController.getRegattaName(ID));
 	}
 	
 	@Test
-	public void testGetRegattaHost() {	
+	public void testGetRegattaHost() throws RemoteException {	
 		assertEquals("Yachtclub", regattaController.getRegattaHost(ID));
 	}
 	
 	@Test
-	public void testGetRegattaList() {	
+	public void testGetRegattaList() throws RemoteException {	
 		List<String> regattaMap = new LinkedList<String>();
 		regattaMap.add("Regatta-1");
 		regattaMap.add("Regatta-2");

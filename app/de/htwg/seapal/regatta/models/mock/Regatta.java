@@ -1,6 +1,7 @@
 package de.htwg.seapal.regatta.models.mock;
 
 import java.util.Date;
+import java.util.List;
 
 import de.htwg.seapal.regatta.models.AbstractRegatta;
 
@@ -55,4 +56,16 @@ public class Regatta extends AbstractRegatta {
 
 	@Override
 	public void setRealFinishTime(Date date) {}
+
+	@Override
+	public List<String> getBoatIds() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addBoat(String boatId) {
+		// TODO Auto-generated method stub
+		
+	}
 }

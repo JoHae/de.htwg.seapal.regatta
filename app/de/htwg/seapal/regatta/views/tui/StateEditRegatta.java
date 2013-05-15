@@ -1,6 +1,7 @@
 package de.htwg.seapal.regatta.views.tui;
 
 import java.io.PrintStream;
+import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -11,7 +12,6 @@ import de.htwg.seapal.regatta.controllers.IRegattaController;
 public class StateEditRegatta implements TuiState {
 
 	private static final String UNKNOWNCOMMAND = "Unknown Command! Please try again ...";
-	private static final String MISSINGID = "Missing ID! Please try again ...";
 	private static final String MISSINGVALUE = "Missing value! Please try again ...";
 	private static final PrintStream OUT = System.out;
 	private final String id;
@@ -32,8 +32,7 @@ public class StateEditRegatta implements TuiState {
 		sb.append(
 				"s <DATE> - set estimated Start Time of Regatta with ID = <ID>")
 				.append("\n");
-		sb.append(
-				"f <DATE> - set estimated Finish Time of Regatta with ID = <ID>")
+		sb.append("f <DATE> - set estimated Finish Time of Regatta with ID = <ID>")
 				.append("\n");
 		sb.append("b        - Go back to main menu").append("\n");
 		sb.append("Please specify Dates in the following format: 'dd/MM/yyyy/HH:mm:ss'");
@@ -46,20 +45,20 @@ public class StateEditRegatta implements TuiState {
 	@Override
 	public boolean process(StateContext state, String line) {
 		char command;
-		String value = null;	
+		String value = null;
 		String[] commandLine;
 		commandLine = line.split(" ");
 
-		if(commandLine[0].length() != 1) {
+		if (commandLine[0].length() != 1) {
 			OUT.println(UNKNOWNCOMMAND);
 			print();
 			return true;
 		}
-		
+
 		command = commandLine[0].charAt(0);
-		
+
 		if (command != 'b') {
-			if(commandLine.length <= 1) {
+			if (commandLine.length <= 1) {
 				OUT.println(MISSINGVALUE);
 				print();
 				return true;
@@ -71,11 +70,21 @@ public class StateEditRegatta implements TuiState {
 		switch (command) {
 
 		case 'n':
-			controller.setRegattaName(id, value);
+			try {
+				controller.setRegattaName(id, value);
+			} catch (RemoteException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			break;
 
 		case 'h':
-			controller.setRegattaHost(id, value);
+			try {
+				controller.setRegattaHost(id, value);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 
 		case 's':
@@ -107,6 +116,9 @@ public class StateEditRegatta implements TuiState {
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -114,9 +126,12 @@ public class StateEditRegatta implements TuiState {
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/hh:mm:ss");
 		try {
-			controller.setRegattaEstimatedFinishTime(id,
-					formatter.parse(value));
+			controller
+					.setRegattaEstimatedFinishTime(id, formatter.parse(value));
 		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

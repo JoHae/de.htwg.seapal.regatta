@@ -3,6 +3,7 @@ package de.htwg.seapal.regatta.controllers;
 import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import de.htwg.seapal.regatta.util.observer.IObservable;
 
@@ -30,6 +31,10 @@ public interface IRegattaController extends IObservable, IRemote {
 	
 	void setRegattaRealFinishTime(String regattaId, Date date) throws RemoteException;
 	Date getRegattaRealFinishTime(String regattaId) throws RemoteException;
+
+	void addBoatByRegattaId(String regattaId, String boatId) throws RemoteException;
+	List<String> getBoatIdsByRegattaId(String regattaId) throws RemoteException;
+	Set<String> getBoatIdsAvailable() throws RemoteException;
 	
 	String getRegattaString(String regattaId) throws RemoteException;
 }

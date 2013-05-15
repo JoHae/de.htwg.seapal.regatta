@@ -1,8 +1,11 @@
 package de.htwg.seapal.regatta.controllers.mock;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import de.htwg.seapal.regatta.controllers.IRegattaController;
@@ -102,6 +105,26 @@ public class RegattaController extends Observable implements IRegattaController 
 
 	@Override
 	public Date getRegattaRealFinishTime(String regattaId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addBoatByRegattaId(String regattaId, String boatId)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<String> getBoatIdsByRegattaId(String regattaId)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Set<String> getBoatIdsAvailable() {
 		// TODO Auto-generated method stub
 		return null;
 	}

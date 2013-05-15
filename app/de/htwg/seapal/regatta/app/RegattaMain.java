@@ -4,14 +4,18 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
 import play.api.Application;
 import play.api.DefaultApplication;
 import play.api.Mode;
 import play.api.Play;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 import de.htwg.seapal.regatta.controllers.IRegattaController;
 import de.htwg.seapal.regatta.views.tui.RegattaTUI;
@@ -37,7 +41,17 @@ public final class RegattaMain {
 		// Guice
 		IRegattaController controller = injector
 				.getInstance(IRegattaController.class);
-
+		
+//		try {
+//			IRegattaController stub = (IRegattaController) 
+//					UnicastRemoteObject.exportObject(controller, 0);
+//			Registry registry = LocateRegistry.getRegistry();
+//			registry.rebind("IRegattaController", stub);
+//			
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+		
 		RegattaTUI tui = new RegattaTUI(controller);
 
 		// continue to read user input on the tui until the user decides to quit

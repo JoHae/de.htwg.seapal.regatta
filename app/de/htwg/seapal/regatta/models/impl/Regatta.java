@@ -1,6 +1,7 @@
 package de.htwg.seapal.regatta.models.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,6 +38,9 @@ public class Regatta extends AbstractRegatta {
 	@Column
 	private Date realFinishTime = null;
 	
+	@Column
+	private List<String> boatIds = null;
+	
 	public Regatta() {}
 	
 	public Regatta(IRegatta regatta) {
@@ -47,6 +51,7 @@ public class Regatta extends AbstractRegatta {
 		this.estimatedFinishTime = regatta.getEstimatedFinishTime();
 		this.realStartTime = regatta.getRealStartTime();
 		this.realFinishTime = regatta.getRealFinishTime();
+		this.boatIds = regatta.getBoatIds();
 	}
 
 	@JsonProperty("_id")
@@ -113,5 +118,15 @@ public class Regatta extends AbstractRegatta {
 	@JsonProperty("real_finishtime")
 	public void setRealFinishTime(Date d) {
 		this.realFinishTime = d;
+	}
+
+	@Override
+	public List<String> getBoatIds() {
+		return this.boatIds;
+	}
+
+	@Override
+	public void addBoat(String boatId) {
+		boatIds.add(boatId);
 	}
 }

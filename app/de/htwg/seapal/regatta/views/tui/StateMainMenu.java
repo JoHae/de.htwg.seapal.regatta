@@ -1,7 +1,7 @@
 package de.htwg.seapal.regatta.views.tui;
 
 import java.io.PrintStream;
-import java.util.Scanner;
+import java.rmi.RemoteException;
 
 import de.htwg.seapal.common.views.tui.StateContext;
 import de.htwg.seapal.common.views.tui.TuiState;
@@ -11,7 +11,6 @@ public class StateMainMenu implements TuiState {
 
 	private static final String UNKNOWNCOMMAND = "Unknown Command! Please try again ...";
 	private static final String MISSINGID = "Missing ID! Please try again ...";
-	private static final String MISSINGVALUE = "Missing value! Please try again ...";
 	private static final PrintStream OUT = System.out;
 	private final IRegattaController controller;
 
@@ -28,6 +27,7 @@ public class StateMainMenu implements TuiState {
 		sb.append("e <ID> - edit Regatta with specified ID").append("\n");
 		sb.append("p <ID> - print values of Regatta with specified ID").append(
 				"\n");
+		sb.append("t      - print all available boats").append("\n");
 		sb.append("q      - Go back to main menu").append("\n");
 		sb.append("\n");
 		sb.append(">>");
@@ -60,12 +60,26 @@ public class StateMainMenu implements TuiState {
 			return false;
 
 		case 'a':
-			controller.addRegatta(commandLine[1]);
+			try {
+				controller.addRegatta(commandLine[1]);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			state.setState(new StateEditRegatta(controller, commandLine[1]));
 			break;
 
 		case 'e':
 			state.setState(new StateEditRegatta(controller, commandLine[1]));
+			break;
+			
+		case 't':
+			try {
+				OUT.println(controller.getBoatIdsAvailable());
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 			
 		case 'p':
@@ -81,6 +95,11 @@ public class StateMainMenu implements TuiState {
 	}
 	
 	private void printCommand(String id) {
-		OUT.println(controller.getRegattaString(id));
+		try {
+			OUT.println(controller.getRegattaString(id));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -2,6 +2,8 @@ package test.de.htwg.seapal.regatta.views.tui;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +19,7 @@ public class RegattaTUITest {
 	private RegattaTUI regatta;
 
 	@Before
-	public void setup() {
+	public void setup() throws RemoteException {
 		Injector injector = Guice.createInjector(new RegattaDemoImplModule());
 		IRegattaController controller = injector.getInstance(IRegattaController.class);
 		regatta = new RegattaTUI(controller);

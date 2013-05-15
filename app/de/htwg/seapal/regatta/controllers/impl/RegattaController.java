@@ -1,9 +1,15 @@
 package de.htwg.seapal.regatta.controllers.impl;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -24,19 +30,19 @@ public class RegattaController extends Observable implements IRegattaController 
 	@Inject
 	private IBoatController boatController;
 
-	IRegattaController stub;
-
-	public RegattaController() {
-		try {
-			stub = (IRegattaController) 
-					UnicastRemoteObject.exportObject(new RegattaController(), 0);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+	public RegattaController() throws RemoteException {
+//		Registry registry;
+//			registry = LocateRegistry.getRegistry();
+//			try {
+//				boatController = (IBoatController) registry.lookup("BoatControllerRMI");
+//			} catch (NotBoundException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 	}
 
 	@Override
-	public void addRegatta(String regattaId) throws RemoteException{
+	public void addRegatta(String regattaId) throws RemoteException {
 		IRegatta regatta = new Regatta();
 		regatta.setId(regattaId);
 		if(database.containsRegatta(regattaId)) {
@@ -165,7 +171,6 @@ public class RegattaController extends Observable implements IRegattaController 
 			database.saveRegatta(regatta);
 		}
 		notifyObservers();
-
 	}
 
 	@Override
@@ -180,5 +185,28 @@ public class RegattaController extends Observable implements IRegattaController 
 	@Override
 	public List<String> getRegattaIds() throws RemoteException {
 		return database.getAllRegattaIds();
+	}
+
+	@Override
+	public void addBoatByRegattaId(String regattaId, String boatId)
+			throws RemoteException {
+		if (database.containsRegatta(regattaId)) {
+			IRegatta regatta = database.getRegattaById(regattaId);
+			regatta.addBoat(boatId);
+			database.saveRegatta(regatta);
+		}
+		notifyObservers();
+	}
+
+	@Override
+	public List<String> getBoatIdsByRegattaId(String regattaId)
+			throws RemoteException {
+		return database.getRegattaById(regattaId).getBoatIds();
+	}
+
+	@Override
+	public Set<String> getBoatIdsAvailable() throws RemoteException {
+		Map<String,String> boats = boatController.getBoats();
+		return boats.keySet();		
 	}
 }

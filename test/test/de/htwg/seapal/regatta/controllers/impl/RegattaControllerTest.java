@@ -2,6 +2,7 @@ package test.de.htwg.seapal.regatta.controllers.impl;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class RegattaControllerTest {
 	}
 
 	@Test
-	public void testGetRegattaName() {
+	public void testGetRegattaName() throws RemoteException {
 		String id = "0";
 		regattaController.deleteRegattaById(id);
 		regattaController.addRegatta(id);
@@ -55,7 +56,7 @@ public class RegattaControllerTest {
 	}
 
 	@Test
-	public void testGetRegattaList() {
+	public void testGetRegattaList() throws RemoteException {
 		List<String> ids = new LinkedList<String>();
 
 		for (int i = 0; i < 10; i++) {
@@ -76,7 +77,7 @@ public class RegattaControllerTest {
 	}
 	
 	@Test
-	public void testGetRegattaHost() {
+	public void testGetRegattaHost() throws RemoteException {
 		String id = "0";
 		regattaController.deleteRegattaById(id);
 		regattaController.addRegatta(id);
@@ -88,7 +89,7 @@ public class RegattaControllerTest {
 	
 	@Ignore("Dev - Status")
 	@Test
-	public void testGetRegattaString() {
+	public void testGetRegattaString() throws RemoteException {
 		String id = "0";
 		regattaController.deleteRegattaById(id);
 		regattaController.addRegatta(id);

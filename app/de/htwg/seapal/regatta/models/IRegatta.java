@@ -1,6 +1,7 @@
 package de.htwg.seapal.regatta.models;
 
 import java.util.Date;
+import java.util.List;
 
 public interface IRegatta {
 	String getId();
@@ -23,6 +24,9 @@ public interface IRegatta {
 	
 	Date getRealFinishTime();
 	void setRealFinishTime(Date date);
+	
+	List<String> getBoatIds();
+	void addBoat(String boatId);
 	
 	String getString();
 }

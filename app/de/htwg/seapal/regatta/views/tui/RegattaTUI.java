@@ -1,6 +1,7 @@
 package de.htwg.seapal.regatta.views.tui;
 
 import java.io.PrintStream;
+import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
@@ -21,7 +22,7 @@ public class RegattaTUI implements IObserver, Plugin, StateContext {
 	
 	private TuiState currentState;
 
-	public RegattaTUI(IRegattaController controller) {
+	public RegattaTUI(IRegattaController controller) throws RemoteException {
 		this.currentState = new StateMainMenu(controller);
 		this.controller = controller;
 		controller.addObserver(this);
