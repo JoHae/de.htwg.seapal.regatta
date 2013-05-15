@@ -22,7 +22,7 @@ public class RegattaControllerTest {
 	private static final String ID = "0";
 	
 	@Before
-	public void setup(){
+	public void setup() {
 		// Build up the application, resolving dependencies automatically by Guice
 		regattaController = injector.getInstance(IRegattaController.class);
 		
