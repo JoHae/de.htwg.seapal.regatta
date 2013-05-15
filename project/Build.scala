@@ -20,7 +20,6 @@ object ApplicationBuild extends Build {
     	"com.google.inject" % "guice" % "3.0",
     	"com.google.inject.extensions" % "guice-multibindings" % "3.0",
     	"com.db4o" % "db4o-full-java5" % "8.1-SNAPSHOT",
-		"com.google.code.jcouchdb" % "jcouchdb" % "0.11.0-1",
 		"org.ektorp" % "org.ektorp" % "1.3.0"
  	)
  	

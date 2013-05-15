@@ -18,22 +18,27 @@ public class RegattaCouchDatabase implements IRegattaDatabase {
 	private CouchDbConnector db;
 
 	public RegattaCouchDatabase() {
+		HttpClient client = null;
 		try {
-			HttpClient client = new StdHttpClient.Builder()
+			client = new StdHttpClient.Builder()
 			.url("http://lenny2.in.htwg-konstanz.de:5984")
 			.build();
-			CouchDbInstance dbInstance = new StdCouchDbInstance(client);
-			db = dbInstance.createConnector("regatta_db", true);
+			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
+		CouchDbInstance dbInstance = new StdCouchDbInstance(client);
+		db = dbInstance.createConnector("regatta_db", true);
 
 	}
 
 	@Override
 	public void saveRegatta(IRegatta regatta) {
-		db.create(regatta);
-
+		if(containsRegatta(regatta.getId())) {
+			db.update(regatta);
+		} else {
+			db.create(regatta);
+		}
 	}
 
 	@Override
