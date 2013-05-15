@@ -37,45 +37,39 @@ public class StateMainMenu implements TuiState {
 
 	@Override
 	public boolean process(StateContext state, String line) {
-/*
-		boolean continu = true;
-
 		char command;
 		String[] commandLine;
 		commandLine = line.split(" ");
 
 		if (commandLine[0].length() != 1) {
 			OUT.println(UNKNOWNCOMMAND);
-			print();
-			return continu;
+			return true;
 		}
 
 		command = commandLine[0].charAt(0);
 		
 		if(command != 'q' && commandLine.length != 2) {
 			OUT.println(MISSINGID);
-			print();
-			return continu;
+			return true;
 		}
 
 		switch (command) {
 
 		case 'q':
-			continu = false;
 			OUT.println("Quitting ...");
-			break;
+			return false;
 
 		case 'a':
 			controller.addRegatta(commandLine[1]);
-			state.setState(new StateEditRegatta(commandLine[1]));
+			state.setState(new StateEditRegatta(controller, commandLine[1]));
 			break;
 
 		case 'e':
-			editRegattaCommand(scanner);
+			state.setState(new StateEditRegatta(controller, commandLine[1]));
 			break;
 			
 		case 'p':
-			printRegattaCommand(scanner);
+			printCommand(commandLine[1]);
 			break;
 
 		default:
@@ -83,10 +77,10 @@ public class StateMainMenu implements TuiState {
 			print();
 		}
 
-		return continu;
-*/
-		return false;
+		return true;
 	}
 	
-
+	private void printCommand(String id) {
+		OUT.println(controller.getRegattaString(id));
+	}
 }

@@ -22,131 +22,18 @@ public class RegattaTUI implements IObserver, Plugin, StateContext {
 	private TuiState currentState;
 
 	public RegattaTUI(IRegattaController controller) {
-		//this.currentState = new StateMainMenu();
+		this.currentState = new StateMainMenu(controller);
 		this.controller = controller;
 		controller.addObserver(this);
 	}
 
 	public void update(Event e) {
-		printTUI();
+//		printTUI();
 	}
 
 	@Override
 	public boolean processInputLine(String line) {
 		return currentState.process(this, line);
-	}
-	
-	private void changeRegattaEstimatedFinishTime(Scanner scanner) {
-		String regattaId;
-		String value;
-		
-		if(!scanner.hasNext()) {
-			OUT.println(MISSINGID);
-			printTUI();
-			return;
-		} else {
-			regattaId = scanner.next();
-		}
-		
-		if(!scanner.hasNext()) {
-			OUT.println(MISSINGVALUE);
-			printTUI();
-			return;
-		} else {
-			value = scanner.next();
-			
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/hh:mm:ss");
-			try {
-				controller.setRegattaEstimatedFinishTime(regattaId, formatter.parse(value));
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-
-	private void changeRegattaEstimatedStartTime(Scanner scanner) {
-		String regattaId;
-		String value;
-		
-		if(!scanner.hasNext()) {
-			OUT.println(MISSINGID);
-			printTUI();
-			return;
-		} else {
-			regattaId = scanner.next();
-		}
-		
-		if(!scanner.hasNext()) {
-			OUT.println(MISSINGVALUE);
-			printTUI();
-			return;
-		} else {
-			value = scanner.next();
-			
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy/hh:mm:ss");
-			try {
-				controller.setRegattaEstimatedFinishTime(regattaId, formatter.parse(value));
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-
-	
-	
-	private void changeNameCommand(Scanner scanner) {
-		String regattaId;
-		String value;
-		
-		if(!scanner.hasNext()) {
-			OUT.println(MISSINGID);
-			printTUI();
-			return;
-		} else {
-			regattaId = scanner.next();
-		}
-		
-		if(!scanner.hasNext()) {
-			OUT.println(MISSINGVALUE);
-			printTUI();
-			return;
-		} else {
-			value = scanner.next();
-		}
-		controller.setRegattaName(regattaId, value);
-	}
-	
-	private void changeHostCommand(Scanner scanner) {
-		String regattaId;
-		String value;
-		
-		if(!scanner.hasNext()) {
-			OUT.println(MISSINGID);
-			printTUI();
-			return;
-		} else {
-			regattaId = scanner.next();
-		}
-		
-		if(!scanner.hasNext()) {
-			OUT.println(MISSINGVALUE);
-			printTUI();
-			return;
-		} else {
-			value = scanner.next();
-		}
-		controller.setRegattaHost(regattaId, value);
-	}
-
-	private void printCommand(Scanner scanner) {
-		if (!scanner.hasNext()) {
-			OUT.println(MISSINGID);
-		} else {
-			OUT.println(controller.getRegattaString(scanner.next()));
-		}
-		printTUI();
 	}
 	
 	@Override

@@ -74,7 +74,6 @@ public class RegattaController extends Observable implements IRegattaController 
 	@Override
 	public void setRegattaEstimatedFinishTime(String regattaId, Date date) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
