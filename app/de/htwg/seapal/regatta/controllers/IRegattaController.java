@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import de.htwg.seapal.regatta.util.observer.IObservable;
+import de.htwg.seapal.common.observer.IObservable;
 
 public interface IRegattaController extends IObservable, IRemote {
 

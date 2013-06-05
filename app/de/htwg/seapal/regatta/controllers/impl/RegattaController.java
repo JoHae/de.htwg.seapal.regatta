@@ -19,7 +19,7 @@ import de.htwg.seapal.regatta.controllers.IRegattaController;
 import de.htwg.seapal.regatta.database.IRegattaDatabase;
 import de.htwg.seapal.regatta.models.IRegatta;
 import de.htwg.seapal.regatta.models.impl.Regatta;
-import de.htwg.seapal.regatta.util.observer.Observable;
+import de.htwg.seapal.common.observer.Observable;
 
 @Singleton
 public class RegattaController extends Observable implements IRegattaController {

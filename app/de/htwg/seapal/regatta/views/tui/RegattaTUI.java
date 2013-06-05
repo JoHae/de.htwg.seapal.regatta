@@ -9,9 +9,9 @@ import java.util.Scanner;
 import de.htwg.seapal.common.views.tui.StateContext;
 import de.htwg.seapal.common.views.tui.TuiState;
 import de.htwg.seapal.regatta.controllers.IRegattaController;
-import de.htwg.seapal.regatta.util.observer.Event;
-import de.htwg.seapal.regatta.util.observer.IObserver;
-import de.htwg.util.plugin.Plugin;
+import de.htwg.seapal.common.observer.Event;
+import de.htwg.seapal.common.observer.IObserver;
+import de.htwg.seapal.common.plugin.Plugin;
 
 public class RegattaTUI implements IObserver, Plugin, StateContext {
 

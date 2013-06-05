@@ -9,7 +9,7 @@ import java.util.Set;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import de.htwg.seapal.regatta.controllers.IRegattaController;
-import de.htwg.seapal.regatta.util.observer.Observable;
+import de.htwg.seapal.common.observer.Observable;
 
 @Singleton
 public class RegattaController extends Observable implements IRegattaController {
