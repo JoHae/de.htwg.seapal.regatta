@@ -7,3 +7,7 @@
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+# Web services
+GET     /regattas/		           		de.htwg.seapal.mark.controllers.Application.getRegattaIds
+GET 	/regattas/regatta			   		de.htwg.seapal.mark.controllers.Application.getRegatta(id : String)
