@@ -1,0 +1,62 @@
+grammar de.htwg.seapal.components.Component with org.eclipse.xtext.common.Terminals
+
+generate component "http://www.htwg.de/seapal/components/Component"
+
+Component:
+	'Name' name = QualifiedName
+	root=Rootpackage
+;
+
+Rootpackage:
+	'RootPackage' name = QualifiedName '{'
+		(elements += AbstractElement)*
+	'}'
+;
+
+PackageDeclaration:
+	'package' name = QualifiedName '{'
+		(elements += AbstractElement)*
+	'}'
+;
+
+AbstractElement:
+	PackageDeclaration | Type | Import | Dependency
+;
+
+QualifiedName:
+	ID ('.' ID)*
+;
+
+Dependency:
+	'depndency' name = QualifiedName
+;
+
+Import:
+	'import' importedNamespace = QualifiedNameWithWildcard
+;
+
+QualifiedNameWithWildcard:
+	QualifiedName '.*'?
+;
+
+Type:
+	RawType | Interface
+;
+
+RawType:
+	'RawType' name=ID
+;
+
+Interface:
+	'interface' name=ID '{'
+		properties+=Property*
+		methods+=Method*
+	'}';
+
+Method:
+	'method' name=ID '('(parameters+=Property (',' parameters+=Property)*)?')' ':' type=[Type | QualifiedName]
+;
+
+Property:
+	name=ID ':' type= [Type | QualifiedName]
+;

@@ -1,0 +1,45 @@
+Name Regatta
+RootPackage de.htwg.seapal.regatta {
+	RawType String
+	RawType Date
+	RawType List
+	RawType void
+	RawType boolean
+
+	package models {
+		import de.htwg.seapal.regatta.models.*
+		import java.util.*
+		
+		interface IRegatta {
+			id : String
+			name : String
+			host : String
+			estimatedStartTime : Date
+			estimatedFinishTime : Date
+			realStartTime : Date
+			realFinishTime : Date
+			boatIds : List
+			method toString() : String
+		}
+	}
+
+	package database {
+		import de.htwg.seapal.regatta.database.*
+		import de.htwg.seapal.regatta.models.*
+		
+		interface IRegattaDatabase {
+			method save(regatta: IRegatta): void
+			method load(): IRegatta
+			method close(): boolean
+		}
+	}
+
+	package controllers {
+		import de.htwg.seapal.regatta.controllers.*
+		import de.htwg.seapal.regatta.models.*
+		
+		interface IRegattaController {
+			
+		}
+	}
+}
