@@ -40,6 +40,9 @@ public class RegattaCouchDatabaseTest {
 		
 		regatta2.setHost(host_2);
 		regatta2.setName(name_2);
+		
+		db.saveRegatta(regatta1);
+		db.saveRegatta(regatta2);
 	}
 
 	@After

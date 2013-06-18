@@ -49,7 +49,7 @@ public class RegattaControllerTest {
 		String id = "0";
 		regattaController.deleteRegattaById(id);
 		regattaController.addRegatta(id);
-		regattaController.setRegattaName(id, "xd");
+		regattaController.setRegattaName(id, "");
 		regattaController.setRegattaName("EINE_NICHT_EXISTIERENDE_ID", "xd");
 		assertEquals("xd", regattaController.getRegattaName(id));
 		assertEquals(null, regattaController.getRegattaName("EINE_NICHT_EXISTIERENDE_ID"));

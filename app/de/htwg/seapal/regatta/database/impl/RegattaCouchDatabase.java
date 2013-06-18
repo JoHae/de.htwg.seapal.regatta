@@ -15,7 +15,7 @@ import de.htwg.seapal.regatta.models.impl.Regatta;
 
 public class RegattaCouchDatabase implements IRegattaDatabase {
 
-	private CouchDbConnector db;
+	private CouchDbConnector db = null;
 
 	public RegattaCouchDatabase() {
 		HttpClient client = null;
@@ -37,17 +37,18 @@ public class RegattaCouchDatabase implements IRegattaDatabase {
 		if(containsRegatta(regatta.getId())) {
 			db.update(regatta);
 		} else {
-			db.create(regatta);
+			db.create(regatta.getId(), regatta);
 		}
 	}
 
 	@Override
 	public boolean containsRegatta(String regattaId) {
-		if(db.get(Regatta.class, regattaId) == null) {
+		try {
+			db.get(Regatta.class, regattaId);
+		} catch (DocumentNotFoundException e) {
 			return false;
-		} else {
-			return true;
 		}
+		return true;
 	}
 
 	@Override

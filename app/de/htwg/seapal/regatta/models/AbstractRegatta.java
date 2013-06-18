@@ -2,9 +2,13 @@ package de.htwg.seapal.regatta.models;
 
 import javax.persistence.MappedSuperclass;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @MappedSuperclass
 public abstract class AbstractRegatta implements IRegatta {
 
+	@JsonIgnore
+	@Override
 	public String getString() {
 		
 		StringBuilder sb = new StringBuilder();

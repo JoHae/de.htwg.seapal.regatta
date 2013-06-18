@@ -68,4 +68,5 @@ public class Regatta extends AbstractRegatta {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

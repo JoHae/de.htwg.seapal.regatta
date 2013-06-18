@@ -9,17 +9,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 import de.htwg.seapal.regatta.models.AbstractRegatta;
 import de.htwg.seapal.regatta.models.IRegatta;
 
 @Entity
-public class Regatta extends AbstractRegatta {
-	
+public class Regatta extends AbstractRegatta  {	
+
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@JsonProperty("_id")
 	private String id;
 
+	@JsonProperty("_rev")
+	private String revision;
+	
 	@Column
 	private String name = null;
 	
@@ -41,6 +46,8 @@ public class Regatta extends AbstractRegatta {
 	@Column
 	private List<String> boatIds = null;
 	
+	
+	
 	public Regatta() {}
 	
 	public Regatta(IRegatta regatta) {
@@ -55,67 +62,88 @@ public class Regatta extends AbstractRegatta {
 	}
 
 	@JsonProperty("_id")
+	@Override
 	public String getId() {
 		return id;
 	}
 
 	@JsonProperty("_id")
+	@Override
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	
+	@JsonProperty("_rev")
+	@Override
+	public String getRevision() {
+		return revision;
+	}
+	@JsonProperty("_rev")
+	@Override
+	public void setRevision(String rev) {
+		this.revision = rev;
+	}
+	@Override
 	public String getName() {
 		return name;
 	}
-
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	@Override
 	public String getHost() {
 		return host;
 	}
-
+	@Override
 	public void setHost(String host) {
 		this.host = host;
 	}
-	
+
 	@JsonProperty("estimated_starttime")
+	@Override
 	public Date getEstimatedStartTime() {
 		return estimatedStartTime;
 	}
-	
+
 	@JsonProperty("estimated_starttime")
+	@Override
 	public void setEstimatedStartTime(Date d) {
 		this.estimatedStartTime = d;
 	}
-	
+
 	@JsonProperty("estimated_finishtime")
+	@Override
 	public Date getEstimatedFinishTime() {
 		return estimatedFinishTime;
 	}
-	
+
 	@JsonProperty("estimated_finishtime")
+	@Override
 	public void setEstimatedFinishTime(Date d) {
 		this.estimatedFinishTime = d;
 	}
-	
+
 	@JsonProperty("real_starttime")
+	@Override
 	public Date getRealStartTime() {
 		return realStartTime;
 	}
 	
 	@JsonProperty("real_starttime")
+	@Override
 	public void setRealStartTime(Date d) {
 		this.realStartTime = d;
 	}
-	
+
 	@JsonProperty("real_finishtime")
+	@Override
 	public Date getRealFinishTime() {
 		return realFinishTime;
 	}
 	
 	@JsonProperty("real_finishtime")
+	@Override
 	public void setRealFinishTime(Date d) {
 		this.realFinishTime = d;
 	}
@@ -129,4 +157,6 @@ public class Regatta extends AbstractRegatta {
 	public void addBoat(String boatId) {
 		boatIds.add(boatId);
 	}
+	
+	
 }

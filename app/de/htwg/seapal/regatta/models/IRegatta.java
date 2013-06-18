@@ -29,4 +29,7 @@ public interface IRegatta {
 	void addBoat(String boatId);
 	
 	String getString();
+	
+	String getRevision();
+	void setRevision(String revision);
 }
